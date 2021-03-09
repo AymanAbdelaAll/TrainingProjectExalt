@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Entry class
+ * Entry class ,crud class to test my other class and implements the other class
  */
 public class Main {
     public static void main(String[] args) {
