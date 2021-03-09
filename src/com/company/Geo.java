@@ -10,7 +10,7 @@ public class Geo {
 
     /**
      *
-     * @param  , an array
+     * @param  , an array that has two element represent parameter(lat,lng)
      */
     public Geo(@NotNull double...members) {
         this.setLat(members[0]);

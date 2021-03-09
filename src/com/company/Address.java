@@ -16,7 +16,7 @@ public class Address {
      * @param geo
      * @param members ,an array that has four parameter of filed (street, suite, city, zipcode)
      */
-    public Address(@NotNull Geo geo, @NotNull String...members){ // String street, String suite, String city, String zipcode
+    public Address(@NotNull Geo geo, @NotNull String...members){
         this.setStreet(members[0]);
         this.setSuite(members[1]);
         this.setCity(members[2]);
