@@ -1,13 +1,14 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Entry class ,crud class to test my other class and implements the other class
  */
 public class Main {
     public static void main(String[] args) {
+
+        //TODO : good job but maybe we can have it as a memeber and/or we can also have arrays of compnays , addreses... etc to randomly generate objects .
         ArrayList <Users> users=new ArrayList<Users>(){
             {
                 add(new Users(new Address(new Geo(-37.3159, 81.1496), "Kulas Light", "Apt. 556", "Gwenborough", "92998-3874"),

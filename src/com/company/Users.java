@@ -15,7 +15,7 @@ public class Users {
     private String phone;
     private String website;
     private Company company;
-    private static int countid=1;
+    private static int countid=1; //TODO : whats is this for ?? also bad convention
 
     public Users() {
         this.setId();
@@ -28,6 +28,7 @@ public class Users {
      * @param members ,an array that has five parameter of filed (name, username, email , phone, website)
      */
     public Users(@NotNull Address address,@NotNull Company company,@NotNull String...members){
+        // TODO : bad use of var-args because caller has no clue which string would be assigned to what. better is to explicitly define parameters
         this.setId();
         this.setName(members[0]);
         this.setUsername(members[1]);

@@ -17,6 +17,7 @@ public class Address {
      * @param members ,an array that has four parameter of filed (street, suite, city, zipcode)
      */
     public Address(@NotNull Geo geo, @NotNull String...members){
+        // TODO : bad use of var-args because caller has no clue which string would be assigned to what. better is to explicitly define parameters
         this.setStreet(members[0]);
         this.setSuite(members[1]);
         this.setCity(members[2]);
