@@ -13,15 +13,17 @@ public class Address {
 
     /**
      *
-     * @param geo
-     * @param members ,an array that has four parameter of filed (street, suite, city, zipcode)
+     * @param geo ,instans of class geo
+     * @param street ,the name of street
+     * @param suite ,the number of suite
+     * @param city ,the name of city
+     * @param zipcode ,the zipcode of the country
      */
-    public Address(@NotNull Geo geo, @NotNull String...members){
-        // TODO : bad use of var-args because caller has no clue which string would be assigned to what. better is to explicitly define parameters
-        this.setStreet(members[0]);
-        this.setSuite(members[1]);
-        this.setCity(members[2]);
-        this.setZipcode(members[3]);
+    public Address(@NotNull Geo geo, @NotNull String street,@NotNull String suite,@NotNull String city,@NotNull String zipcode){
+        this.setStreet(street);
+        this.setSuite(suite);
+        this.setCity(city);
+        this.setZipcode(zipcode);
         this.setGeo(geo);
     }
 

@@ -1,6 +1,5 @@
 package com.company;
 
-
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -15,27 +14,32 @@ public class Users {
     private String phone;
     private String website;
     private Company company;
-    private static int countid=1; //TODO : whats is this for ?? also bad convention
+    private static int countid=1; //this member to auto assign id from 1,2,...etc
 
     public Users() {
         this.setId();
     }
 
+
     /**
      *
      * @param address ,the address of user
      * @param company ,the instance of a Company class
-     * @param members ,an array that has five parameter of filed (name, username, email , phone, website)
+     * @param name ,the name of user
+     * @param username ,the username of user
+     * @param email ,the email of  user
+     * @param phone ,the phone number of user
+     * @param website ,the website of user
      */
-    public Users(@NotNull Address address,@NotNull Company company,@NotNull String...members){
-        // TODO : bad use of var-args because caller has no clue which string would be assigned to what. better is to explicitly define parameters
+    public Users(@NotNull Address address,@NotNull Company company,@NotNull String name,@NotNull String username,
+                 @NotNull String email, @NotNull String phone ,@NotNull String website){
         this.setId();
-        this.setName(members[0]);
-        this.setUsername(members[1]);
-        this.setEmail(members[2]);
+        this.setName(name);
+        this.setUsername(username);
+        this.setEmail(email);
         this.setAddress(address);
-        this.setPhone(members[3]);
-        this.setWebsite(members[4]);
+        this.setPhone(phone);
+        this.setWebsite(website);
         this.setCompany(company);
     }
 

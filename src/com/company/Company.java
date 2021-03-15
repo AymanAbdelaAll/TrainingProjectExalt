@@ -11,13 +11,14 @@ public class Company {
 
     /**
      *
-     * @param members ,an array that has three parameter of filed (name , String catchphrase, String bs)
+     * @param name ,the name of company
+     * @param catchphrase ,the catchphrase(brand) of the company
+     * @param bs ,
      */
-    public Company(@NotNull String...members){
-        // TODO : bad use of var-args because caller has no clue which string would be assigned to what. better is to explicitly define parameters
-        this.setName(members[0]);
-        this.setCatchphrase(members[1]);
-        this.setBs(members[2]);
+    public Company(@NotNull String name,@NotNull String catchphrase,@NotNull String bs){
+        this.setName(name);
+        this.setCatchphrase(catchphrase);
+        this.setBs(bs);
     }
 
     public String getName() {

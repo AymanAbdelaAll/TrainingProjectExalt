@@ -3,28 +3,29 @@ package com.company;
 import org.jetbrains.annotations.NotNull;
 
 public class Geo {
+    private Double lat;
+    private Double lng;
 
-    // def is 0 which will be returned if geo doesnt exist , better use auto boxing with object Double
-    private double lat;
-    private double lng;
-
-    public Geo() { }
+    public Geo() {
+        this.lat=0.0;
+        this.lng=0.0;
+    }
 
     /**
      *
-     * @param  , an array that has two element represent parameter(lat,lng)
+     * @param lat
+     * @param lng
      */
-    public Geo(@NotNull double...members) {
-        // TODO : bad use of var-args because caller has no clue which string would be assigned to what. better is to explicitly define parameters
-        this.setLat(members[0]);
-        this.setLng(members[1]);
+    public Geo(@NotNull Double lat,@NotNull Double lng) {
+        this.setLat(lat);
+        this.setLng(lng);
     }
 
     public double getLat() {
         return lat;
     }
 
-    public void setLat(@NotNull double lat) {
+    public void setLat(@NotNull Double lat) {
         this.lat = lat;
     }
 
@@ -32,7 +33,7 @@ public class Geo {
         return lng;
     }
 
-    public void setLng(@NotNull double lng) {
+    public void setLng(@NotNull Double lng) {
         this.lng = lng;
     }
 
