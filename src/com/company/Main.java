@@ -82,5 +82,9 @@ public class Main {
         };
 
         Crud_Users.showUsers(users);
+        Crud_Users.removeUsers(users,4);
+        Crud_Users.updateUsersName(users,"AymanAbdelal",2);
+        System.out.println("*********************************************************************************");
+        Crud_Users.showUsers(users);
     }
 }
