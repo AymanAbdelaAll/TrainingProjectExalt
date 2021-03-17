@@ -7,6 +7,8 @@ import java.util.ArrayList;
 /**
  * Crud_Users has a methods to delete users,update field in user,and show all users with field
  */
+
+//TODO : bad convention !!! no need to create a stabd alnoe class for this
 public class Crud_Users {
 
     public static Users removeUsers(@NotNull ArrayList<Users> users,int index){

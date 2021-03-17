@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
+        //TODO : those lists can be a class member
         ArrayList<Geo> geos=new ArrayList<Geo>(){{
             add(new Geo(-37.3159, 81.1496));
             add(new Geo(-43.9509,-34.4618));
@@ -81,6 +82,7 @@ public class Main {
             }
         };
 
+        // TODO : from cli , from Scanner Object . let user decicde what to do
         Crud_Users.showUsers(users);
         Crud_Users.removeUsers(users,4);
         Crud_Users.updateUsersName(users,"AymanAbdelal",2);
