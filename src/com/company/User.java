@@ -2,10 +2,12 @@ package com.company;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 /**
  * The Users class contain all information about any user
  */
-public class Users {
+public class User {
     private int id;
     private String name;
     private String username;
@@ -14,9 +16,9 @@ public class Users {
     private String phone;
     private String website;
     private Company company;
-    private static int countid=1; //this member to auto assign id from 1,2,...etc
+    private static int countId =1; //this member to auto assign id from 1,2,...etc
 
-    public Users() {
+    public User() {
         this.setId();
     }
 
@@ -31,8 +33,8 @@ public class Users {
      * @param phone ,the phone number of user
      * @param website ,the website of user
      */
-    public Users(@NotNull Address address,@NotNull Company company,@NotNull String name,@NotNull String username,
-                 @NotNull String email, @NotNull String phone ,@NotNull String website){
+    public User(@NotNull Address address, @NotNull Company company, @NotNull String name, @NotNull String username,
+                @NotNull String email, @NotNull String phone , @NotNull String website){
         this.setId();
         this.setName(name);
         this.setUsername(username);
@@ -47,8 +49,8 @@ public class Users {
      * these method make the class auto assign id
      */
     private void setId() {
-        this.id=getCountid();
-        countid++;
+        this.id= getCountId();
+        countId++;
     }
 
     public int getId() {
@@ -111,8 +113,8 @@ public class Users {
         return company;
     }
 
-    public static int getCountid() {
-        return countid;
+    public static int getCountId() {
+        return countId;
     }
 
     @Override
@@ -127,5 +129,12 @@ public class Users {
                 ", website='" + website + '\'' +
                 ", company=" + company.toString() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        User user = (User) o;
+        return id == user.id && name.equals(user.name) && username.equals(user.username) && email.equals(user.email) &&
+                address.equals(user.address) && phone.equals(user.phone) && website.equals(user.website) && company.equals(user.company);
     }
 }

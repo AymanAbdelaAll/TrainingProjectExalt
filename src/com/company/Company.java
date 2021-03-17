@@ -2,6 +2,8 @@ package com.company;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class Company {
     private String name;
     private  String catchphrase;
@@ -52,5 +54,11 @@ public class Company {
                 ", catchphrase='" + catchphrase + '\'' +
                 ", bs='" + bs + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(@NotNull Object o) {
+        Company company = (Company) o;
+        return name.equals(company.name) && catchphrase.equals(company.catchphrase) && bs.equals(company.bs);
     }
 }

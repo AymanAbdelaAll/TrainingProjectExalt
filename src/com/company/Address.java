@@ -2,6 +2,8 @@ package com.company;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class Address {
     private String street;
     private String suite;
@@ -76,5 +78,12 @@ public class Address {
                 ", zipcode='" + zipcode + '\'' +
                 ", geo=" + geo.toString() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(@NotNull Object o) {
+        Address address = (Address) o;
+        return street.equals(address.street) && suite.equals(address.suite) && city.equals(address.city) &&
+                zipcode.equals(address.zipcode) && geo.equals(address.geo);
     }
 }

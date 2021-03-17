@@ -2,6 +2,8 @@ package com.company;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class Geo {
     private Double lat;
     private Double lng;
@@ -44,4 +46,11 @@ public class Geo {
                 ", lng=" + lng +
                 '}';
     }
+
+    @Override
+    public boolean equals(@NotNull Object o) {
+        Geo geo = (Geo) o;
+        return lat.equals(geo.lat) && lng.equals(geo.lng);
+    }
+
 }
