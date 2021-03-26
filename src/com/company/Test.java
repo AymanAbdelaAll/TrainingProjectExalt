@@ -22,16 +22,16 @@ public class Test {
         add(new Geo(-38.2386,57.2232));
     }};
    private static ArrayList<Address> addresses=new ArrayList<Address>(){{
-        add(new Address(geos.get(0), "Kulas Light", "Apt. 556", "Gwenborough", "92998-3874"));
-        add(new Address (geos.get(1),"Victor Plains","Suite 879","Wisokyburgh","90566-7771"));
-        add(new Address (geos.get(2),"Douglas Extension","Suite 847","McKenziehaven","59590-4157"));
-        add(new Address (geos.get(3),"Hoeger Mall","Apt. 692","South Elvis","53919-4257"));
-        add(new Address (geos.get(4),"Skiles Walks","Suite 351","Roscoeview","33263"));
-        add(new Address (geos.get(5),"Norberto Crossing","Apt. 950","South Christy","23505-1337"));
-        add(new Address (geos.get(6),"Rex Trail","Suite 280","Howemouth","58804-1099"));
-        add(new Address (geos.get(7),"Ellsworth Summit","Suite 729","Aliyaview","45169"));
-        add(new Address(geos.get(8),"Dayna Park","Suite 449","Bartholomebury","76495-3109"));
-        add(new Address(geos.get(9),"Kattie Turnpike","Suite 198","Lebsackbury","31428-2261"));
+        add(AddressBuilder.createAddressGeo(geos.get(0), "Kulas Light", "Apt. 556", "Gwenborough", "92998-3874"));
+        add(AddressBuilder.createAddressGeo(geos.get(1),"Victor Plains","Suite 879","Wisokyburgh","90566-7771"));
+        add(AddressBuilder.createAddressGeo(geos.get(2),"Douglas Extension","Suite 847","McKenziehaven","59590-4157"));
+        add(AddressBuilder.createAddressGeo(geos.get(3),"Hoeger Mall","Apt. 692","South Elvis","53919-4257"));
+        add(AddressBuilder.createAddressGeo(geos.get(4),"Skiles Walks","Suite 351","Roscoeview","33263"));
+        add(AddressBuilder.createAddress("Norberto Crossing","Apt. 950","South Christy","23505-1337"));
+        add(AddressBuilder.createAddress ("Rex Trail","Suite 280","Howemouth","58804-1099"));
+        add(AddressBuilder.createAddress ("Ellsworth Summit","Suite 729","Aliyaview","45169"));
+        add(AddressBuilder.createAddress("Dayna Park","Suite 449","Bartholomebury","76495-3109"));
+        add(AddressBuilder.createAddress("Kattie Turnpike","Suite 198","Lebsackbury","31428-2261"));
 
     }};
     private static ArrayList<Company> companies=new ArrayList<Company>(){{
@@ -105,71 +105,9 @@ public class Test {
                     removeUsers(users, users.get(id - 1));
                     break;
                 case 3:
-                    System.out.println("Enter The Id Of user you want to update name:");
+                    System.out.println("Enter The Id Of user you want to update: ");
                     id = scanner.nextInt();
-                    System.out.println("Enter 1 to update name .");
-                    System.out.println("Enter 2 to update username .");
-                    System.out.println("Enter 3 to update email .");
-                    System.out.println("Enter 4 to update website .");
-                    System.out.println("Enter 5 to update phone .");
-                    System.out.println("Enter 6 to update Address .");
-                    System.out.println("Enter 7 to update Company .");
-                    int update=scanner.nextInt();
-                    scanner.nextLine();
-                    switch (update){
-                        case 1:
-                            System.out.println("Enter The new name of user :");
-                            String name = scanner.nextLine();
-                            updateUsersName(users, name, id-1);
-                            break;
-                        case 2:
-                            System.out.println("Enter The new username of user :");
-                            String username=scanner.nextLine();
-                            updateUsersUserName(users,username,id-1);
-                            break;
-                        case 3:
-                            System.out.println("Enter The new Email of user :");
-                            String email=scanner.nextLine();
-                            updateUsersEmail(users,email,id-1);
-                            break;
-                        case 4:
-                            System.out.println("Enter The new website of user :");
-                            String website=scanner.nextLine();
-                            updateUsersWebsite(users,website,id-1);
-                            break;
-                        case 5:
-                            System.out.println("Enter The new phone of user :");
-                            String phone=scanner.nextLine();
-                            updateUsersPhone(users,phone,id-1);
-                            break;
-                        case 6:
-                            System.out.println("Enter The new Address-street of user :");
-                            String street=scanner.nextLine();
-                            System.out.println("Enter The new Address-suite of user : ");
-                            String suite=scanner.nextLine();
-                            System.out.println("Enter The new Address-city of user :");
-                            String city=scanner.nextLine();
-                            System.out.println("Enter The new Address-zipcode of user :");
-                            String zipcode=scanner.nextLine();
-                            System.out.println("Enter The new Geo-lat of user :");
-                            Double lat=scanner.nextDouble();
-                            System.out.println("Enter The new Geo-lng of user :");
-                            Double lng=scanner.nextDouble();
-                            Geo geo=new Geo(lat,lng);
-                            updateUsersAddress(users, (new Address(geo,street,suite,city,zipcode)) ,id-1);
-                            break;
-                        case 7:
-                            System.out.println("Enter The new Company-name of user :");
-                            String companyName=scanner.nextLine();
-                            System.out.println("Enter The new Company-catchphrase of user :");
-                            String catchphrase=scanner.nextLine();
-                            System.out.println("Enter The new Company-bs of user :");
-                            String bs =scanner.nextLine();
-                            updateUsersCompany(users,new Company(companyName,catchphrase,bs),id-1);
-                            break;
-                        default:
-                            System.out.println("You Enter unvalid number .");
-                    }
+                    updateUserCli(users,id);
                     break;
                 default:
                     System.out.println("You Enter un valid number .");
@@ -177,6 +115,77 @@ public class Test {
         }
     }
 
+    public static void updateUserCli(ArrayList<User>users,int id){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter 1 to update name .");
+        System.out.println("Enter 2 to update username .");
+        System.out.println("Enter 3 to update email .");
+        System.out.println("Enter 4 to update website .");
+        System.out.println("Enter 5 to update phone .");
+        System.out.println("Enter 6 to update Address .");
+        System.out.println("Enter 7 to update Company .");
+        int update=scanner.nextInt();
+        scanner.nextLine();
+
+        switch (update){
+            case 1:
+                System.out.println("Enter The new name of user :");
+                String name = scanner.nextLine();
+                updateUsersName(users, name, id-1);
+                break;
+            case 2:
+                System.out.println("Enter The new username of user :");
+                String username=scanner.nextLine();
+                updateUsersUserName(users,username,id-1);
+                break;
+            case 3:
+                System.out.println("Enter The new Email of user :");
+                String email=scanner.nextLine();
+                updateUsersEmail(users,email,id-1);
+                break;
+            case 4:
+                System.out.println("Enter The new website of user :");
+                String website=scanner.nextLine();
+                updateUsersWebsite(users,website,id-1);
+                break;
+            case 5:
+                System.out.println("Enter The new phone of user :");
+                String phone=scanner.nextLine();
+                updateUsersPhone(users,phone,id-1);
+                break;
+            case 6:
+                System.out.println("Enter The new Address-street of user :");
+                String street=scanner.nextLine();
+                System.out.println("Enter The new Address-suite of user : ");
+                String suite=scanner.nextLine();
+                System.out.println("Enter The new Address-city of user :");
+                String city=scanner.nextLine();
+                System.out.println("Enter The new Address-zipcode of user :");
+                String zipcode=scanner.nextLine();
+                if (users.get(id).getAddress().isGeo()){
+                    System.out.println("Enter The new Geo-lat of user :");
+                    Double lat=scanner.nextDouble();
+                    System.out.println("Enter The new Geo-lng of user :");
+                    Double lng=scanner.nextDouble();
+                    Geo geo=new Geo(lat,lng);
+                    updateUsersAddress(users, (AddressBuilder.createAddressGeo(geo,street,suite,city,zipcode)) ,id-1);
+                }else{
+                    updateUsersAddress(users,AddressBuilder.createAddress(street,suite,city,zipcode),id-1);
+                }
+                break;
+            case 7:
+                System.out.println("Enter The new Company-name of user :");
+                String companyName=scanner.nextLine();
+                System.out.println("Enter The new Company-catchphrase of user :");
+                String catchphrase=scanner.nextLine();
+                System.out.println("Enter The new Company-bs of user :");
+                String bs =scanner.nextLine();
+                updateUsersCompany(users,new Company(companyName,catchphrase,bs),id-1);
+                break;
+            default:
+                System.out.println("You Enter unvalid number .");
+        }
+    }
     public static User removeUsers(@NotNull ArrayList<User> users,@NotNull User user){
         boolean isremoved= users.remove(user);
         if (isremoved){

@@ -9,24 +9,24 @@ public class Address {
     private String suite;
     private String city;
     private String zipcode;
-    private Geo geo;
+    boolean isGeo; //to check if the address has geo or not
+
 
     public Address() { }
 
     /**
      *
-     * @param geo ,instans of class geo
      * @param street ,the name of street
      * @param suite ,the number of suite
      * @param city ,the name of city
      * @param zipcode ,the zipcode of the country
      */
-    public Address(@NotNull Geo geo, @NotNull String street,@NotNull String suite,@NotNull String city,@NotNull String zipcode){
+    public Address( @NotNull String street,@NotNull String suite,@NotNull String city,@NotNull String zipcode){
         this.setStreet(street);
         this.setSuite(suite);
         this.setCity(city);
         this.setZipcode(zipcode);
-        this.setGeo(geo);
+        this.isGeo=false;
     }
 
     public String getStreet() {
@@ -61,12 +61,8 @@ public class Address {
         this.zipcode = zipcode;
     }
 
-    public Geo getGeo() {
-        return geo;
-    }
-
-    public void setGeo(@NotNull Geo geo) {
-        this.geo = geo;
+    public boolean isGeo() {
+        return isGeo;
     }
 
     @Override
@@ -76,14 +72,13 @@ public class Address {
                 ", suite='" + suite + '\'' +
                 ", city='" + city + '\'' +
                 ", zipcode='" + zipcode + '\'' +
-                ", geo=" + geo.toString() +
                 '}';
     }
 
     @Override
     public boolean equals(@NotNull Object o) {
         Address address = (Address) o;
-        return street.equals(address.street) && suite.equals(address.suite) && city.equals(address.city) &&
-                zipcode.equals(address.zipcode) && geo.equals(address.geo);
+        return street.equals(address.street) && suite.equals(address.suite) &&
+                city.equals(address.city) && zipcode.equals(address.zipcode) ;
     }
 }

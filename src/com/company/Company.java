@@ -2,8 +2,6 @@ package com.company;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 public class Company {
     private String name;
     private  String catchphrase;

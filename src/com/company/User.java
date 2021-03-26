@@ -2,7 +2,6 @@ package com.company;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 
 /**
  * The Users class contain all information about any user
@@ -124,7 +123,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", address=" + address.toString() +
+                ", " + address.toString() +
                 ", phone='" + phone + '\'' +
                 ", website='" + website + '\'' +
                 ", company=" + company.toString() +
