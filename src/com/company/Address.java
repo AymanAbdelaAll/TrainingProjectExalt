@@ -9,10 +9,9 @@ public class Address {
     private String suite;
     private String city;
     private String zipcode;
-    boolean isGeo; //to check if the address has geo or not
 
 
-    public Address() { }
+    protected Address() { }
 
     /**
      *
@@ -21,12 +20,18 @@ public class Address {
      * @param city ,the name of city
      * @param zipcode ,the zipcode of the country
      */
-    public Address( @NotNull String street,@NotNull String suite,@NotNull String city,@NotNull String zipcode){
+    protected Address( @NotNull String street,@NotNull String suite,@NotNull String city,@NotNull String zipcode){
         this.setStreet(street);
         this.setSuite(suite);
         this.setCity(city);
         this.setZipcode(zipcode);
-        this.isGeo=false;
+    }
+
+    public static Address buildGeo(Geo geo,@NotNull String street,@NotNull String suite,@NotNull String city,@NotNull String zipcode){
+        if (geo == null)
+            return new Address(street,suite,city,zipcode);
+        else
+            return new GeoAddress(geo,street,suite,city,zipcode);
     }
 
     public String getStreet() {
@@ -59,10 +64,6 @@ public class Address {
 
     public void setZipcode(@NotNull String zipcode) {
         this.zipcode = zipcode;
-    }
-
-    public boolean isGeo() {
-        return isGeo;
     }
 
     @Override

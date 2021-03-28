@@ -4,16 +4,16 @@ import org.jetbrains.annotations.NotNull;
 
 
 
-public class AddressGeo extends Address {
+public class GeoAddress extends Address {
     private Geo geo;
 
-    public AddressGeo() { }
+    protected GeoAddress() { }
 
-    public AddressGeo(@NotNull Geo geo, @NotNull String street, @NotNull String suite, @NotNull String city, @NotNull String zipcode) {
+    protected GeoAddress(@NotNull Geo geo, @NotNull String street, @NotNull String suite, @NotNull String city, @NotNull String zipcode) {
         super(street, suite, city, zipcode);
         this.geo = geo;
-        super.isGeo=true;
     }
+
     public Geo getGeo() {
         return geo;
     }
@@ -24,8 +24,8 @@ public class AddressGeo extends Address {
 
     @Override
     public boolean equals(Object o) {
-        AddressGeo addressGeo=(AddressGeo) o;
-        return super.equals(addressGeo) && geo.equals(addressGeo.geo) ;
+        GeoAddress geoAddress=(GeoAddress) o;
+        return super.equals(geoAddress) && geo.equals(geoAddress.geo) ;
     }
 
     @Override

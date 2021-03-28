@@ -22,16 +22,16 @@ public class Test {
         add(new Geo(-38.2386,57.2232));
     }};
    private static ArrayList<Address> addresses=new ArrayList<Address>(){{
-        add(AddressBuilder.createAddressGeo(geos.get(0), "Kulas Light", "Apt. 556", "Gwenborough", "92998-3874"));
-        add(AddressBuilder.createAddressGeo(geos.get(1),"Victor Plains","Suite 879","Wisokyburgh","90566-7771"));
-        add(AddressBuilder.createAddressGeo(geos.get(2),"Douglas Extension","Suite 847","McKenziehaven","59590-4157"));
-        add(AddressBuilder.createAddressGeo(geos.get(3),"Hoeger Mall","Apt. 692","South Elvis","53919-4257"));
-        add(AddressBuilder.createAddressGeo(geos.get(4),"Skiles Walks","Suite 351","Roscoeview","33263"));
-        add(AddressBuilder.createAddress("Norberto Crossing","Apt. 950","South Christy","23505-1337"));
-        add(AddressBuilder.createAddress ("Rex Trail","Suite 280","Howemouth","58804-1099"));
-        add(AddressBuilder.createAddress ("Ellsworth Summit","Suite 729","Aliyaview","45169"));
-        add(AddressBuilder.createAddress("Dayna Park","Suite 449","Bartholomebury","76495-3109"));
-        add(AddressBuilder.createAddress("Kattie Turnpike","Suite 198","Lebsackbury","31428-2261"));
+        add(Address.buildGeo(geos.get(0), "Kulas Light", "Apt. 556", "Gwenborough", "92998-3874"));
+        add(Address.buildGeo(geos.get(1),"Victor Plains","Suite 879","Wisokyburgh","90566-7771"));
+        add(Address.buildGeo(geos.get(2),"Douglas Extension","Suite 847","McKenziehaven","59590-4157"));
+        add(Address.buildGeo(geos.get(3),"Hoeger Mall","Apt. 692","South Elvis","53919-4257"));
+        add(Address.buildGeo(geos.get(4),"Skiles Walks","Suite 351","Roscoeview","33263"));
+        add(Address.buildGeo(null,"Norberto Crossing","Apt. 950","South Christy","23505-1337"));
+        add(Address.buildGeo (null,"Rex Trail","Suite 280","Howemouth","58804-1099"));
+        add(Address.buildGeo(null,"Ellsworth Summit","Suite 729","Aliyaview","45169"));
+        add(Address.buildGeo(null,"Dayna Park","Suite 449","Bartholomebury","76495-3109"));
+        add(Address.buildGeo(null,"Kattie Turnpike","Suite 198","Lebsackbury","31428-2261"));
 
     }};
     private static ArrayList<Company> companies=new ArrayList<Company>(){{
@@ -110,7 +110,7 @@ public class Test {
                     updateUserCli(users,id);
                     break;
                 default:
-                    System.out.println("You Enter un valid number .");
+                    System.out.println("You Enter invalid number .");
             }
         }
     }
@@ -162,15 +162,17 @@ public class Test {
                 String city=scanner.nextLine();
                 System.out.println("Enter The new Address-zipcode of user :");
                 String zipcode=scanner.nextLine();
-                if (users.get(id).getAddress().isGeo()){
+                User user=users.get(id);
+                Address userAddress=user.getAddress();
+                if (userAddress instanceof GeoAddress){
                     System.out.println("Enter The new Geo-lat of user :");
                     Double lat=scanner.nextDouble();
                     System.out.println("Enter The new Geo-lng of user :");
                     Double lng=scanner.nextDouble();
                     Geo geo=new Geo(lat,lng);
-                    updateUsersAddress(users, (AddressBuilder.createAddressGeo(geo,street,suite,city,zipcode)) ,id-1);
+                    updateUsersAddress(users, (Address.buildGeo(geo,street,suite,city,zipcode)) ,id-1);
                 }else{
-                    updateUsersAddress(users,AddressBuilder.createAddress(street,suite,city,zipcode),id-1);
+                    updateUsersAddress(users,Address.buildGeo(null,street,suite,city,zipcode),id-1);
                 }
                 break;
             case 7:
@@ -183,7 +185,7 @@ public class Test {
                 updateUsersCompany(users,new Company(companyName,catchphrase,bs),id-1);
                 break;
             default:
-                System.out.println("You Enter unvalid number .");
+                System.out.println("You Enter invalid number .");
         }
     }
     public static User removeUsers(@NotNull ArrayList<User> users,@NotNull User user){
@@ -207,7 +209,8 @@ public class Test {
 
     public static boolean updateUsersName(@NotNull ArrayList<User> users, @NotNull String name, int index){
         if (index<users.size()&&index>=0){
-            users.get(index).setName(name);
+            User user =users.get(index);
+            user.setName(name);
             System.out.println("The Name Of User Updated .");
             return true;
         }else {
@@ -218,7 +221,8 @@ public class Test {
 
     public static boolean updateUsersUserName(@NotNull ArrayList<User> users, @NotNull String username, int index){
         if (index<users.size()&&index>=0){
-            users.get(index).setUsername(username);
+            User user= users.get(index);
+            user.setUsername(username);
             System.out.println("The Username Updated .");
             return true;
         }else {
@@ -229,7 +233,8 @@ public class Test {
 
     public static boolean updateUsersEmail(@NotNull ArrayList<User> users, @NotNull String email, int index){
         if (index<users.size()&&index>=0){
-            users.get(index).setUsername(email);
+            User user = users.get(index);
+            user.setUsername(email);
             System.out.println("The User Email Updated .");
             return true;
         }else {
@@ -240,7 +245,8 @@ public class Test {
 
     public static boolean updateUsersPhone(@NotNull ArrayList<User> users, @NotNull String phone, int index){
         if (index<users.size()&&index>=0){
-            users.get(index).setUsername(phone);
+            User user = users.get(index);
+            user.setUsername(phone);
             System.out.println("The User Phone Updated .");
             return true;
         }else {
@@ -251,7 +257,8 @@ public class Test {
 
     public static boolean updateUsersWebsite(@NotNull ArrayList<User> users, @NotNull String website, int index){
         if (index<users.size()&&index>=0){
-            users.get(index).setUsername(website);
+            User user = users.get(index);
+            user.setUsername(website);
             System.out.println("The User Website Updated .");
             return true;
         }else {
@@ -262,7 +269,8 @@ public class Test {
 
     public static boolean updateUsersAddress(@NotNull ArrayList<User> users, @NotNull Address address, int index){
         if (index<users.size()&&index>=0){
-            users.get(index).setAddress(address);
+            User user = users.get(index);
+            user.setAddress(address);
             System.out.println("The Address Updated .");
             return true;
         }else {
@@ -273,7 +281,8 @@ public class Test {
 
     public static boolean updateUsersCompany(@NotNull ArrayList<User> users, @NotNull Company company, int index){
         if (index<users.size()&&index>=0){
-            users.get(index).setCompany(company);
+            User user = users.get(index);
+            user.setCompany(company);
             System.out.println("The Company Object Is Updated .");
             return true;
         }else {
